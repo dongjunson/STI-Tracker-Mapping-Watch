@@ -455,7 +455,10 @@ pip3 install -r requirements.txt
 
 ## 버전 히스토리
 
-- **v0.7.0** (2024-11-14) - Python/pyserial 기반 완전 재작성
+- **v0.7.1** (2025-11-14) - 날짜 정보 수정
+  - 릴리스 날짜를 2025년으로 정확히 업데이트
+
+- **v0.7.0** (2025-11-14) - Python/pyserial 기반 완전 재작성
   - 크로스 플랫폼 지원 (macOS/Windows)
   - 자동 포트 탐색
   - 컬러 터미널 출력
@@ -475,6 +478,6 @@ pip3 install -r requirements.txt
 
 ---
 
-**STI Tracker Mapping Watch - VMAC Configuration Tool v0.7.0**  
+**STI Tracker Mapping Watch - VMAC Configuration Tool v0.7.1**  
 Developed with ❤️ for seamless Tracker device configuration
 

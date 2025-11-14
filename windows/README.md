@@ -186,8 +186,8 @@ python -m pip install pyserial --user
 ---
 
 **Tracker VMAC 설정 도구**  
-**버전**: 0.7.0  
+**버전**: 0.7.1  
 **플랫폼**: Windows 10/11  
 **언어**: Python 3.7+  
-**릴리스**: 2024-11-14
+**릴리스**: 2025-11-14
 
