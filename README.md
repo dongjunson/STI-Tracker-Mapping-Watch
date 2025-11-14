@@ -1,82 +1,44 @@
 # Tracker MAC 설정 자동 스크립트
 
-macOS와 Windows에서 Tracker 장치의 MAC 주소를 자동으로 설정하는 스크립트입니다.
+macOS와 Windows에서 Tracker 장치의 MAC 주소를 자동으로 설정하는 Python 스크립트입니다.
 
 ## Quick Start
 
 ### macOS
 ```bash
-# 1. 설치
-./install.sh
+# 1. pyserial 설치
+pip3 install pyserial
 
-# 2. 실행 (Python 버전 권장)
+# 2. 실행
 ./set_vmac.py
+# 또는
+python3 set_vmac.py
 ```
 
 ### Windows
 ```cmd
-REM 1. 설치
-cd windows
-install.bat
+REM 1. pyserial 설치
+python -m pip install pyserial
 
 REM 2. 실행
-set_vmac.bat
+cd windows
+python set_vmac.py
 ```
-
-## 버전 비교
-
-| 항목 | Python (set_vmac.py) ⭐ | Bash (set_mac.sh) |
-|------|------------------------|-------------------|
-| 설치 | pyserial 필요 | 추가 설치 불필요 |
-| 안정성 | ⭐⭐⭐⭐⭐ | ⭐⭐⭐ |
-| 응답 확인 | 명확하고 실시간 | 불안정할 수 있음 |
-| 에러 처리 | 우수 | 보통 |
-| 가독성 | 컬러 출력 | 기본 출력 |
-| 에러 발생 | 없음 | Assertion 에러 가능 |
-
-## 버전
-
-### Python 버전 (set_vmac.py) - 권장 ⭐
-
-**장점:**
-- ✅ 시리얼 포트 설정이 정확하고 안정적
-- ✅ AT 명령 응답을 실시간으로 명확하게 확인
-- ✅ 에러 처리가 우수
-- ✅ 컬러 출력으로 가독성 향상
-- ✅ Assertion 에러 없음
-
-**단점:**
-- pyserial 설치 필요
-
-### Bash 버전 (set_mac.sh)
-
-**장점:**
-- ✅ 추가 설치 불필요 (screen 기본 제공)
-
-**단점:**
-- ⚠️ screen 로그 수집이 불안정할 수 있음
-- ⚠️ 일부 macOS 버전에서 Assertion 에러 발생 가능
 
 ## 사전 요구사항
 
-### Python 버전 (set_vmac.py - 권장)
-#### macOS
+### macOS
 1. **macOS 시스템**
-2. **Python 3.6 이상**
+2. **Python 3.6 이상** (macOS에 기본 설치됨)
 3. **pyserial 라이브러리**
 4. **USB 케이블** 및 Tracker 장치
 
-#### Windows
+### Windows
 1. **Windows 10/11**
 2. **Python 3.7 이상** (설치 시 "Add Python to PATH" 옵션 필수!)
 3. **pyserial 라이브러리**
 4. **FTDI VCP 드라이버** (USB 드라이버)
 5. **USB 케이블** 및 Tracker 장치
-
-### Bash 버전 (set_mac.sh - macOS 전용)
-1. **macOS 시스템**
-2. **screen 명령어** (macOS에 기본 포함)
-3. **USB 케이블** 및 Tracker 장치
 
 ## 시리얼 통신 설정
 
@@ -92,32 +54,7 @@ set_vmac.bat
 
 ## 설치 방법
 
-### macOS - 빠른 설치 (자동)
-
-```bash
-./install.sh
-```
-
-이 명령은 자동으로:
-- Python 확인
-- pyserial 설치
-- 실행 권한 부여
-
-### Windows - 빠른 설치 (자동)
-
-```cmd
-cd windows
-install.bat
-```
-
-이 명령은 자동으로:
-- Python 확인
-- pip 확인
-- pyserial 설치
-
-### 수동 설치
-
-#### macOS - Python 버전 (권장)
+### macOS
 
 1. pyserial 설치:
 ```bash
@@ -131,14 +68,7 @@ pip3 install -r requirements.txt
 chmod +x set_vmac.py
 ```
 
-#### macOS - Bash 버전
-
-1. 스크립트에 실행 권한 부여:
-```bash
-chmod +x set_mac.sh
-```
-
-#### Windows - 수동 설치
+### Windows
 
 1. Python 설치 (https://www.python.org/downloads/)
    - ⚠️ **중요**: "Add Python to PATH" 옵션 반드시 체크!
@@ -152,7 +82,7 @@ python -m pip install pyserial
 
 ## 사용 방법
 
-### macOS - Python 버전 (권장)
+### macOS
 
 1. Tracker 장치를 USB 케이블로 Mac에 연결합니다.
 
@@ -161,15 +91,6 @@ python -m pip install pyserial
 ./set_vmac.py
 # 또는
 python3 set_vmac.py
-```
-
-### macOS - Bash 버전
-
-1. Tracker 장치를 USB 케이블로 Mac에 연결합니다.
-
-2. 스크립트 실행:
-```bash
-./set_mac.sh
 ```
 
 ### Windows
@@ -183,10 +104,10 @@ python3 set_vmac.py
 3. 스크립트 실행:
 ```cmd
 cd windows
-set_vmac.bat
+python set_vmac.py
 ```
 
-또는 `windows\set_vmac.bat` 파일을 더블클릭
+또는 `windows\set_vmac.py` 파일을 더블클릭
 
 ## 실행 단계 (공통)
 
@@ -226,9 +147,9 @@ set_vmac.bat
 - LED 패턴이 변경되는지 확인
 
 **기타 원인:**
-- 시리얼 통신 설정 오류 → Python 버전 사용 권장
 - 포트가 다른 프로그램에서 사용 중
 - USB 케이블 문제
+- pyserial이 설치되지 않음
 
 ### Tracker 로그가 보이지 않는 경우
 - **정상일 수 있음**: Tracker는 항상 로그를 출력하지는 않습니다
@@ -258,13 +179,28 @@ set_vmac.bat
 **해결 방법:**
 1. Python을 재설치하고 "Add Python to PATH" 옵션을 체크
 2. 또는 시스템 환경 변수에 Python 경로 추가
+3. `python` 대신 `py` 명령어 시도: `py set_vmac.py`
 
-### screen 명령어 오류 (macOS)
-- macOS에는 screen이 기본 포함되어 있습니다.
-- 없다면 Homebrew로 설치: `brew install screen`
+### pyserial을 찾을 수 없음
+```
+ModuleNotFoundError: No module named 'serial'
+```
+
+**해결 방법:**
+```bash
+# macOS
+pip3 install pyserial
+
+# Windows
+python -m pip install pyserial
+```
 
 ### 권한 오류 (macOS)
-- 스크립트에 실행 권한이 있는지 확인: `chmod +x set_mac.sh`
+- 스크립트에 실행 권한이 있는지 확인: `chmod +x set_vmac.py`
+
+### 포트 사용 중 오류
+- 다른 프로그램(Arduino IDE, PuTTY, 시리얼 터미널 등)이 포트를 사용 중인지 확인
+- 해당 프로그램을 종료하고 다시 시도
 
 ## 주의사항
 
@@ -278,23 +214,21 @@ set_vmac.bat
 ## 파일 구성
 
 ### 루트 디렉토리
-- `set_vmac.py` - Python 버전 메인 스크립트 (macOS/Windows 공통) ⭐
-- `set_mac.sh` - Bash 버전 메인 스크립트 (macOS 전용)
-- `install.sh` - 자동 설치 스크립트 (macOS)
+- `set_vmac.py` - Python 메인 스크립트 (macOS 실행용)
 - `requirements.txt` - Python 의존성 파일
 - `README.md` - 사용 설명서
 
 ### windows/ 디렉토리 (독립 실행 가능)
-- `windows/set_vmac.py` - Python 메인 스크립트 (루트의 복사본)
-- `windows/set_vmac.bat` - Windows용 실행 배치 파일
-- `windows/install.bat` - Windows용 자동 설치 스크립트
+- `windows/set_vmac.py` - Python 메인 스크립트 (Windows 실행용)
 - `windows/README.md` - Windows 사용 설명서
 
-⚠️ Windows 사용자는 `windows/` 폴더만 복사해서 독립적으로 사용할 수 있습니다.
+⚠️ **Windows 사용자**는 `windows/` 폴더만 복사해서 독립적으로 사용할 수 있습니다.  
+⚠️ **macOS 사용자**는 루트 디렉토리의 `set_vmac.py`를 사용합니다.  
+💡 Python 스크립트를 직접 실행하므로 별도의 쉘 스크립트나 배치 파일이 불필요합니다.
 
-## Python 버전의 주요 특징
+## 주요 특징
 
-### 정확한 시리얼 통신 설정
+### 정확한 시리얼 통신 설정 (pyserial 기반)
 ```python
 serial.Serial(
     port='/dev/cu.usbserial-XXXX',
