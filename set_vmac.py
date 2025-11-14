@@ -2,6 +2,9 @@
 """
 Tracker VMAC 자동 설정 스크립트 (Python/pyserial 버전)
 macOS와 Windows에서 Tracker 장치의 VMAC을 설정합니다.
+
+Version: 0.7.0
+Date: 2024-11-14
 """
 
 import serial
