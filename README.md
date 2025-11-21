@@ -149,14 +149,6 @@ python3 set_vmac.py
 3. **MAC 형식**: 16진수 4자리 (0-9, A-F)
 4. **시리얼 설정**: 115200 baud, 8N1
 
-## 🤝 기여하기
-
-1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a Pull Request
-
 ## 📄 라이선스
 
 이 프로젝트는 교육 및 연구 목적으로 제공됩니다.
@@ -164,4 +156,4 @@ python3 set_vmac.py
 ---
 
 **STI Tracker Mapping Watch - VMAC Configuration Tool v0.8.1**  
-Developed with ❤️ for seamless Tracker device configuration
+Developed by YaongPainter ❤️
