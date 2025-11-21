@@ -5,11 +5,14 @@ VMAC 입력, 검증, AT 명령 전송 기능을 제공합니다.
 
 import re
 import time
+import serial
+from typing import Optional
 from .ui import Colors, print_header, print_success, print_info, print_error
 from .serial_utils import read_with_timeout
+from .config import AT_CMD_VMAC, WAIT_TIME_NORMAL
 
 
-def get_vmac_input():
+def get_vmac_input() -> str:
     """VMAC 입력받기 (뒷 4자리만)"""
     print_header("4. VMAC 설정 준비")
     
@@ -40,18 +43,18 @@ def get_vmac_input():
         return vmac
 
 
-def wait_for_mac_mode():
+def wait_for_mac_mode() -> None:
     """MAC 설정 모드 진입 대기"""
     print_header("5. MAC 설정 모드 진입")
     
-    print(f"{Colors.YELLOW}⚠️  MAC 설정 모드로 진입해야 AT+VMAC 명령이 작동합니다!{Colors.ENDC}")
+    print(f"{Colors.YELLOW}⚠️  MAC 설정 모드로 진입해야 {AT_CMD_VMAC} 명령이 작동합니다!{Colors.ENDC}")
     print()
     print("📌 버튼 조작 방법:")
     print("   ▶ [짧게 1회] + [길게 3초] 1회 → 이 조합을 3회 반복")
     print()
     print_info("MAC 설정 모드로 진입하면:")
     print("   - LED가 특정 패턴으로 표시됩니다")
-    print("   - AT+VMAC 명령에 응답합니다")
+    print(f"   - {AT_CMD_VMAC} 명령에 응답합니다")
     print("   - 30초 후 자동으로 재부팅됩니다")
     print()
     
@@ -63,7 +66,7 @@ def wait_for_mac_mode():
     time.sleep(2)
 
 
-def send_at_command(ser, command, description, wait_time=3):
+def send_at_command(ser: serial.Serial, command: str, description: str, wait_time: float = WAIT_TIME_NORMAL) -> str:
     """AT 명령 전송 및 응답 수신"""
     print(f"📝 {description} → {command}")
     

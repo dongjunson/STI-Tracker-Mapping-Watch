@@ -17,7 +17,7 @@ class Colors:
     ENDC = '\033[0m'
 
 
-def init_colors():
+def init_colors() -> None:
     """Windows에서 ANSI 색상 코드 활성화"""
     if platform.system() == 'Windows':
         try:
@@ -28,29 +28,29 @@ def init_colors():
             pass  # 실패해도 계속 진행 (색상만 표시 안됨)
 
 
-def print_header(text):
+def print_header(text: str) -> None:
     """헤더 출력"""
     print(f"\n{Colors.BOLD}{'='*50}{Colors.ENDC}")
     print(f"{Colors.BOLD}{text:^50}{Colors.ENDC}")
     print(f"{Colors.BOLD}{'='*50}{Colors.ENDC}\n")
 
 
-def print_success(text):
+def print_success(text: str) -> None:
     """성공 메시지"""
     print(f"{Colors.GREEN}✅ {text}{Colors.ENDC}")
 
 
-def print_error(text):
+def print_error(text: str) -> None:
     """에러 메시지"""
     print(f"{Colors.RED}❌ {text}{Colors.ENDC}")
 
 
-def print_warning(text):
+def print_warning(text: str) -> None:
     """경고 메시지"""
     print(f"{Colors.YELLOW}⚠️  {text}{Colors.ENDC}")
 
 
-def print_info(text):
+def print_info(text: str) -> None:
     """정보 메시지"""
     print(f"{Colors.BLUE}💡 {text}{Colors.ENDC}")
 

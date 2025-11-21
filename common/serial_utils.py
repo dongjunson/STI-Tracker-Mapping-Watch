@@ -3,14 +3,19 @@
 시리얼 포트 설정, 데이터 읽기, 모니터링 기능을 제공합니다.
 """
 
+from typing import Optional, List
 import serial
 import serial.tools.list_ports
 import time
 import platform
 from .ui import Colors, print_success, print_error
+from .config import (
+    SERIAL_BAUDRATE, SERIAL_TIMEOUT, SERIAL_BYTESIZE, 
+    SERIAL_STOPBITS, SERIAL_PARITY
+)
 
 
-def find_tracker_port():
+def find_tracker_port() -> Optional[str]:
     """Tracker USB 시리얼 포트 자동 탐색"""
     from .ui import print_header
     print_header("1. USB 시리얼 포트 자동 탐색")
@@ -45,28 +50,28 @@ def find_tracker_port():
     return port
 
 
-def configure_serial(port_name):
+def configure_serial(port_name: str) -> Optional[serial.Serial]:
     """시리얼 포트 설정 및 연결 (매뉴얼 기준)"""
     from .ui import print_header
     print_header("2. 시리얼 포트 설정 및 연결")
     
     print("🔧 매뉴얼 기준 설정:")
     print("   - Protocol: Serial")
-    print("   - Baud rate: 115200")
-    print("   - Data bits: 8")
-    print("   - Parity: None")
-    print("   - Stop bits: 1")
+    print(f"   - Baud rate: {SERIAL_BAUDRATE}")
+    print(f"   - Data bits: {SERIAL_BYTESIZE}")
+    print(f"   - Parity: {SERIAL_PARITY}")
+    print(f"   - Stop bits: {SERIAL_STOPBITS}")
     print("   - Flow control: None")
     print()
     
     try:
         ser = serial.Serial(
             port=port_name,
-            baudrate=115200,
-            bytesize=serial.EIGHTBITS,
-            parity=serial.PARITY_NONE,
-            stopbits=serial.STOPBITS_ONE,
-            timeout=2,
+            baudrate=SERIAL_BAUDRATE,
+            bytesize=serial.EIGHTBITS, # pyserial constant
+            parity=serial.PARITY_NONE, # pyserial constant
+            stopbits=serial.STOPBITS_ONE, # pyserial constant
+            timeout=SERIAL_TIMEOUT,
             xonxoff=False,  # Software flow control: None
             rtscts=False,   # Hardware flow control: None
             dsrdtr=False
@@ -91,7 +96,7 @@ def configure_serial(port_name):
         return None
 
 
-def read_with_timeout(ser, timeout=2):
+def read_with_timeout(ser: serial.Serial, timeout: float = 2.0) -> str:
     """타임아웃을 가지고 시리얼 데이터 읽기"""
     start_time = time.time()
     data = b''
@@ -107,7 +112,7 @@ def read_with_timeout(ser, timeout=2):
     return data.decode('utf-8', errors='ignore')
 
 
-def monitor_logs(ser, duration=5):
+def monitor_logs(ser: serial.Serial, duration: float = 5.0) -> List[str]:
     """Tracker 로그 모니터링"""
     print(f"⏳ Tracker 로그 수집 중... ({duration}초)")
     print("----------------------------------------")
@@ -127,7 +132,7 @@ def monitor_logs(ser, duration=5):
     return logs
 
 
-def test_connection(ser):
+def test_connection(ser: serial.Serial) -> bool:
     """Tracker 연결 진단"""
     from .ui import print_header, print_info, print_warning
     print_header("3. Tracker 연결 진단")
