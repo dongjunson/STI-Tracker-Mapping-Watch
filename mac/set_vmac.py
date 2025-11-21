@@ -3,7 +3,7 @@
 Tracker VMAC 자동 설정 스크립트 (macOS 버전)
 macOS에서 Tracker 장치의 VMAC을 설정합니다.
 
-Version: 0.7.2
+Version: 0.8.0
 Date: 2025-11-21
 """
 
@@ -84,8 +84,14 @@ def main():
         print()
         send_at_command(ser, "AT+VMAC", "설정 후 VMAC 조회", wait_time=3)
         
-        # 9. 재부팅 여부
-        print_header("9. 재부팅")
+        # 9. 전체 설정 확인
+        print_header("9. 전체 설정 확인")
+        print_info("AT+SCFG 명령으로 현재 설정 정보를 확인합니다.")
+        print()
+        send_at_command(ser, "AT+SCFG", "전체 설정 조회", wait_time=3)
+        
+        # 10. 재부팅 여부
+        print_header("10. 재부팅")
         reboot = input("Tracker 재부팅(AT+RBOT)을 실행할까요? (y/n): ").strip().lower()
         
         if reboot == 'y':

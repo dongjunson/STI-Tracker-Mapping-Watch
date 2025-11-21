@@ -77,8 +77,16 @@ python set_vmac.py
 3. MAC 주소 검증 (16진수 4자리)
 4. MAC 설정 모드 확인
 5. VMAC 설정 및 검증
+6. 전체 설정 확인 (AT+SCFG)
 
 ## 📝 버전 히스토리
+
+### v0.8.0 (2025-11-21)
+- **AT+SCFG 명령 추가**: 재부팅 전 전체 설정 확인 단계 추가
+- **Windows 드라이버 안내 개선**: FTDI VCP 드라이버를 선택사항으로 변경 (자동 설치 안내)
+- **사용자 경험 개선**: 불필요한 장치 관리자 확인 단계 제거
+- **문서 구조 개선**: 플랫폼별 상세 README 작성
+- 루트 README를 히스토리 관리 및 개요로 간소화
 
 ### v0.7.2 (2025-11-21)
 - 공통 함수를 `common/` 모듈로 완전 분리
@@ -142,5 +150,5 @@ python3 set_vmac.py
 
 ---
 
-**STI Tracker Mapping Watch - VMAC Configuration Tool v0.7.2**  
+**STI Tracker Mapping Watch - VMAC Configuration Tool v0.8.0**  
 Developed with ❤️ for seamless Tracker device configuration
