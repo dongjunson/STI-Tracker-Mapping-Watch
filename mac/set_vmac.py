@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Tracker VMAC 자동 설정 스크립트 (Windows 버전)
-Windows에서 Tracker 장치의 VMAC을 설정합니다.
+Tracker VMAC 자동 설정 스크립트 (macOS 버전)
+macOS에서 Tracker 장치의 VMAC을 설정합니다.
 
 Version: 0.7.2
 Date: 2025-11-21
@@ -27,11 +27,11 @@ from common.vmac_utils import (
 
 
 def main():
-    """메인 함수 (Windows 특화)"""
-    # Windows에서 색상 활성화
+    """메인 함수 (macOS 특화)"""
+    # 색상 초기화
     init_colors()
     
-    print_header("Tracker VMAC 자동 설정 스크립트 (Windows)")
+    print_header("Tracker VMAC 자동 설정 스크립트 (macOS)")
     
     # pyserial 설치 확인
     try:
@@ -39,8 +39,9 @@ def main():
     except ImportError:
         print_error("pyserial이 설치되어 있지 않습니다.")
         print("\n설치 방법:")
-        print("   python -m pip install pyserial")
-        print("   또는 windows\\install.bat 실행")
+        print("   pip3 install pyserial")
+        print("   또는")
+        print("   python3 -m pip install pyserial")
         return 1
     
     # 1. 포트 찾기
@@ -116,3 +117,4 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
+
