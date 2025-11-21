@@ -11,16 +11,18 @@ Tracker 장치의 VMAC(가상 MAC 주소)을 자동으로 설정하는 Python �
 STI-Tracker-Mapping-Watch/
 ├── README.md            # 프로젝트 개요 및 히스토리 (이 파일)
 ├── common/              # 공통 함수 모듈
-│   ├── __init__.py
-│   ├── ui.py            # 터미널 UI
-│   ├── serial_utils.py  # 시리얼 통신
-│   └── vmac_utils.py    # VMAC 설정
+│   ├── __init__.py      # 모듈 초기화 (버전 정보)
+│   ├── config.py        # 설정 및 상수 정의
+│   ├── core.py          # VMAC 설정 핵심 로직
+│   ├── ui.py            # 터미널 UI 및 색상
+│   ├── serial_utils.py  # 시리얼 통신 및 포트 관리
+│   └── vmac_utils.py    # VMAC 입력/검증/AT 명령
 ├── mac/                 # macOS용
 │   ├── README.md        # macOS 사용 설명서
-│   └── set_vmac.py
+│   └── set_vmac.py      # macOS 실행 스크립트
 └── windows/             # Windows용
     ├── README.md        # Windows 사용 설명서
-    └── set_vmac.py
+    └── set_vmac.py      # Windows 실행 스크립트
 ```
 
 ## 🚀 Quick Start
@@ -62,10 +64,13 @@ python set_vmac.py
 
 ## 🔧 핵심 기능
 
-### 1. 공통 모듈 구조
-- `common/ui.py`: 터미널 출력 및 색상
-- `common/serial_utils.py`: 시리얼 포트 관리
-- `common/vmac_utils.py`: VMAC 설정 로직
+### 1. 공통 모듈 구조 (common/)
+- `__init__.py`: 모듈 초기화 및 버전 정보 (v0.8.0)
+- `config.py`: 시리얼 통신 설정 및 AT 명령어 상수 정의
+- `core.py`: VMAC 설정 프로세스의 핵심 로직 (run_vmac_setup)
+- `ui.py`: 터미널 색상 출력 및 메시지 포맷팅
+- `serial_utils.py`: 시리얼 포트 탐색, 연결, 데이터 읽기
+- `vmac_utils.py`: VMAC 입력/검증, AT 명령 전송 및 응답 처리
 
 ### 2. 플랫폼별 최적화
 - **macOS**: `/dev/cu.usbserial*` 자동 탐색
@@ -80,6 +85,14 @@ python set_vmac.py
 6. 전체 설정 확인 (AT+SCFG)
 
 ## 📝 버전 히스토리
+
+### v0.8.1 (2025-11-21)
+- **모듈 구조 개선**: `common/` 디렉토리를 6개 모듈로 세분화
+  - `config.py`: 설정 및 상수 중앙 관리
+  - `core.py`: 핵심 로직 분리 (run_vmac_setup)
+  - 기존 모듈 유지: `ui.py`, `serial_utils.py`, `vmac_utils.py`, `__init__.py`
+- **코드 가독성 향상**: 설정과 로직의 명확한 분리
+- **유지보수성 강화**: 모듈별 책임 명확화
 
 ### v0.8.0 (2025-11-21)
 - **AT+SCFG 명령 추가**: 재부팅 전 전체 설정 확인 단계 추가
@@ -150,5 +163,5 @@ python3 set_vmac.py
 
 ---
 
-**STI Tracker Mapping Watch - VMAC Configuration Tool v0.8.0**  
+**STI Tracker Mapping Watch - VMAC Configuration Tool v0.8.1**  
 Developed with ❤️ for seamless Tracker device configuration

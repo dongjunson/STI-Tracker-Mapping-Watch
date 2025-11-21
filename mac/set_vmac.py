@@ -3,7 +3,7 @@
 Tracker VMAC 자동 설정 스크립트 (macOS 버전)
 macOS에서 Tracker 장치의 VMAC을 설정합니다.
 
-Version: 0.8.0
+Version: 0.8.1
 Date: 2025-11-21
 """
 

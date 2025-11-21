@@ -134,7 +134,7 @@ A: FTDI, CH340, Prolific 등 대부분의 USB-Serial 칩셋 지원
 
 ---
 
-**버전**: 0.8.0  
+**버전**: 0.8.1  
 **플랫폼**: macOS (Intel/Apple Silicon)  
 **Python**: 3.6+
 
